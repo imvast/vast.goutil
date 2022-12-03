@@ -6,33 +6,36 @@
 package goutil
 
 import (
-    "fmt"
-    "time"
+	"fmt"
+	"time"
 	"os"
 	"os/exec"
 	"bufio"
-	"syscall"
-	"unsafe"
-    "github.com/fatih/color"
+	// "syscall"
+	// "unsafe"
+	"github.com/fatih/color"
 )
 
 func getTime() string {
-    currentTime := time.Now().Format("15:04:05")
-    return color.BlueString(currentTime)
+	currentTime := time.Now().Format("15:04:05")
+	return color.BlueString(currentTime)
 }
 
-// func PrettyPrint(col any, content ...interface{}) {
-// 	if content == nil {
-// 		fmt.Printf("[%s] %s", getTime(), color.CyanString(fmt.Sprintln(col)))
-// 	} else {
-// 		if col == 1 {
-// 			fmt.Printf("[%s] %s", getTime(), color.BlueString(fmt.Sprintln(content...)))
-// 		} else { // TODO: handle extra color values
-// 			fmt.Printf("%s", col) 
-// 		}
-// 	}
-// }
+/**
+* unfinished *
+func PrettyPrint(col any, content ...interface{}) {
+	if content == nil {
+		fmt.Printf("[%s] %s", getTime(), color.CyanString(fmt.Sprintln(col)))
+	} else {
+		if col == 1 {
+			fmt.Printf("[%s] %s", getTime(), color.BlueString(fmt.Sprintln(content...)))
+		} else { // TODO: handle extra color values
+			fmt.Printf("%s", col) 
+		}
+	}
+}
 
+* causes err on certain devices *
 func SetTitle(title string) {
 	handle, err := syscall.LoadLibrary("Kernel32.dll")
 	if err != nil {
@@ -48,6 +51,8 @@ func SetTitle(title string) {
 	syscall.Syscall(proc, 1, uintptr(unsafe.Pointer(syscall.StringToUTF16Ptr(title))), 0, 0)
 }
 
+
+* unused due to errors *
 var (
 	Username = "..."
 	Password = "..."
@@ -58,6 +63,7 @@ func TitleThread() {
 		time.Sleep(50 * time.Millisecond)
 	}
 }
+*/
 
 func Print(content...interface{}) {
 	fmt.Printf("[%s] %s %s", getTime(), color.HiBlackString("➜"), color.CyanString(fmt.Sprintln(content...)))
