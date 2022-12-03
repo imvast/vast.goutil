@@ -6,3 +6,8 @@
 ## Features
 
 - dont konw dont care about documenting
+
+
+## Credits
+
+- some made w/ help from Aran404
