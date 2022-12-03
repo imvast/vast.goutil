@@ -17,9 +17,14 @@ import (
 	"github.com/fatih/color"
 )
 
-func getTime() string {
+func getTime(c bool) string {
 	currentTime := time.Now().Format("15:04:05")
-	return color.BlueString(currentTime)
+	if c == true {
+		return color.BlueString(currentTime)
+	} else {
+		return currentTime
+	}
+	
 }
 
 /**
@@ -75,30 +80,30 @@ func TitleThread() {
 // }
 
 func Print(content...interface{}) {
-	fmt.Printf("[%s] %s %s", getTime(), color.HiBlackString("➜"), color.CyanString(fmt.Sprintln(content...)))
+	fmt.Printf("[%s] %s %s", getTime(true), color.HiBlackString("➜"), color.CyanString(fmt.Sprintln(content...)))
 }
 
 func Logger(status int, content ...interface{}) {
 	if status == 0 {
-		fmt.Printf("[%s] %s %s", getTime(), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("[%s] %s %s", getTime(true), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if status == 1 {
-		fmt.Printf("[%s] %s %s", getTime(), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("[%s] %s %s", getTime(true), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if status == 2 {
-		fmt.Printf("[%s] %s %s", getTime(), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("[%s] %s %s", getTime(true), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else {
 		return
 	}
 }
 
-func StatLog(status int, col string, content ...interface{}) {
+func StatLog(col string, status int, content ...interface{}) {
 	if col == "green" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime()), status, color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "red" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime()), status, color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "yellow" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime()), status, color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "magent"{
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime()), status, color.MagentaString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.MagentaString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else {
 		return
 	}
