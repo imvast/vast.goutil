@@ -18,10 +18,11 @@ import (
 	"github.com/fatih/color"
 )
 
+
 func getTime(c bool) string {
 	currentTime := time.Now().Format("15:04:05")
 	if c == true {
-		return color.BlueString(currentTime)
+		return color.HiBlackString(currentTime)
 	} else {
 		return currentTime
 	}
@@ -82,31 +83,40 @@ func TitleThread() {
 // }
 
 func Print(content...interface{}) {
-	fmt.Printf("[%s] %s %s", getTime(true), color.HiBlackString("➜"), color.CyanString(fmt.Sprintln(content...)))
+	fmt.Printf("[%s] %s %s", color.BlueString(getTime(false)), color.HiBlackString("➜"), color.CyanString(fmt.Sprintln(content...)))
 }
 
 func Logger(status int, content ...interface{}) {
 	if status == 0 {
-		fmt.Printf("[%s] %s %s", getTime(true), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("[%s] %s %s", color.BlueString(getTime(false)), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if status == 1 {
-		fmt.Printf("[%s] %s %s", getTime(true), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("[%s] %s %s", color.BlueString(getTime(false)), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if status == 2 {
-		fmt.Printf("[%s] %s %s", getTime(true), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("[%s] %s %s", color.BlueString(getTime(false)), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else {
 		return
 	}
 }
 
 func StatLog(col string, status int, content ...interface{}) {
+	// idk how tf to do this :/
+    // switch status.(type) {
+	// 	case string:
+	// 		return
+	// 	case int32:
+	// 		status := strconv.Itoa(status)
+	// 	default:
+	// 		return
+	// }
 	statc := strconv.Itoa(status)
 	if col == "green" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.GreenString(statc), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", getTime(false), color.GreenString(statc), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "red" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.RedString(statc), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", getTime(false), color.RedString(statc), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "yellow" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.YellowString(statc), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
-	} else if col == "magent"{
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.MagentaString(statc), color.MagentaString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", getTime(false), color.YellowString(statc), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		} else if col == "magent"{
+		fmt.Printf("%s [%v] %s %s", getTime(false), color.MagentaString(statc), color.MagentaString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else {
 		return
 	}
@@ -116,12 +126,12 @@ func Question(content string) string {
     fmt.Printf("[ %s ] %s", color.BlueString("?"), color.BlueString(fmt.Sprintf(content)))
     scanner := bufio.NewScanner(os.Stdin)
     scanner.Scan()
-	question := scanner.Text()
+	answer := scanner.Text()
     err := scanner.Err()
 	if err != nil {
 		Logger(2, err)
 	}
-	return question
+	return answer
 }
 
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")

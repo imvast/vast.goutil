@@ -7,8 +7,10 @@ package goutil
 
 import (
 	"fmt"
+	"github.com/fatih/color"
 )
 
 func init() {
-	fmt.Println("[goutil] initializing ...")
+	str := fmt.Sprintf(color.HiWhiteString("[goutil]") + color.HiBlackString(" initialized | made by vast"))
+	fmt.Println(getTime(true), str)
 }

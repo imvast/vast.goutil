@@ -6,10 +6,10 @@
 package goutil
 
 import (
-      "fmt"
+    "fmt"
 	"testing"
 )
 
-func TestVast(t *testing.T) {
-	fmt.Println("test?")
+func TestFunc(t *testing.T) {
+	fmt.Println(getTime(true), "printout:test?")
 }
