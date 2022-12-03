@@ -1,3 +1,8 @@
+/**
+ * Author: imvast
+ * File: logger.go
+ */
+
 package goutil
 
 import (
