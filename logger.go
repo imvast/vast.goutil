@@ -123,6 +123,17 @@ func Question(content string) string {
 	return question
 }
 
+var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+func RandStr(n int) string {
+    // make sure to include this: func init() { rand.Seed(time.Now().UnixNano()) }
+    b := make([]rune, n)
+    for i := range b {
+        b[i] = letterRunes[rand.Intn(len(letterRunes))]
+    }
+    return string(b)
+}
+
+
 func ClearConsole() {
 	cmd := exec.Command("cmd", "/C", "cls")
 	cmd.Stdout = os.Stdout
