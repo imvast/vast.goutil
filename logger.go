@@ -11,7 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"bufio"
-	// "strconv"
+	"strconv"
 	// "syscall"
 	// "unsafe"
 	"github.com/fatih/color"
@@ -73,7 +73,8 @@ func TitleThread() {
 
 // experimental since i havent read the docs for it lol
 // func ToString(content ...interface{}) string {
-// 	return strconv.Atoi(content...)
+// 	msg, _ := strconv.Atoi(content...)
+// 	return msg
 // }
 // func ToInt(content ...interface{}) int {
 // 	return strconv.Iota(content...)
@@ -96,14 +97,15 @@ func Logger(status int, content ...interface{}) {
 }
 
 func StatLog(col string, status int, content ...interface{}) {
+	statc := strconv.Itoa(status)
 	if col == "green" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.GreenString(statc), color.GreenString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "red" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.RedString(statc), color.RedString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "yellow" {
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.YellowString(statc), color.YellowString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else if col == "magent"{
-		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), status, color.MagentaString("➜"), color.CyanString(fmt.Sprintln(content...)))
+		fmt.Printf("%s [%v] %s %s", color.HiBlackString(getTime(false)), color.MagentaString(statc), color.MagentaString("➜"), color.CyanString(fmt.Sprintln(content...)))
 	} else {
 		return
 	}
