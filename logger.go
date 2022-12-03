@@ -12,6 +12,7 @@ import (
 	"os/exec"
 	"bufio"
 	"strconv"
+	"math/rand"
 	// "syscall"
 	// "unsafe"
 	"github.com/fatih/color"
