@@ -146,7 +146,7 @@ func RandStr(n int) string {
 
 
 func ClearConsole() {
-	cmd := exec.Command("cmd", "/C", "cls")
+	cmd := exec.Command("cmd", "/C", "clear||cls")
 	cmd.Stdout = os.Stdout
 	cmd.Run()
 }
