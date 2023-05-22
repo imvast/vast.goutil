@@ -19,7 +19,7 @@ import (
 )
 
 
-func getTime(c bool) string {
+func GetTime(c bool) string {
 	currentTime := time.Now().Format("15:04:05")
 	if c == true {
 		return color.HiBlackString(currentTime)
